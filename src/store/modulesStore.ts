@@ -11,6 +11,7 @@ interface ModulesState {
   create: (data: ModuleDraft) => Promise<Module>;
   update: (id: string, patch: Partial<ModuleDraft>) => Promise<Module | null>;
   remove: (id: string) => Promise<boolean>;
+  replaceAll: (items: Module[]) => void;
 }
 
 export const useModulesStore = create<ModulesState>((set, get) => ({
@@ -45,5 +46,10 @@ export const useModulesStore = create<ModulesState>((set, get) => ({
     const ok = await svc.deleteModule(id);
     if (ok) set({ items: get().items.filter((m) => m.id !== id) });
     return ok;
+  },
+
+  replaceAll: (items) => {
+    svc.setModulesCache(items);
+    set({ items, loaded: true });
   },
 }));

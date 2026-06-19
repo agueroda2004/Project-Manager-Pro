@@ -11,6 +11,7 @@ interface CategoriesState {
   create: (data: CategoryDraft) => Promise<Category>;
   update: (id: string, patch: Partial<CategoryDraft>) => Promise<Category | null>;
   remove: (id: string) => Promise<boolean>;
+  replaceAll: (items: Category[]) => void;
 }
 
 export const useCategoriesStore = create<CategoriesState>((set, get) => ({
@@ -45,5 +46,10 @@ export const useCategoriesStore = create<CategoriesState>((set, get) => ({
     const ok = await svc.deleteCategory(id);
     if (ok) set({ items: get().items.filter((c) => c.id !== id) });
     return ok;
+  },
+
+  replaceAll: (items) => {
+    svc.setCategoriesCache(items);
+    set({ items, loaded: true });
   },
 }));

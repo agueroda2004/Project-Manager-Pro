@@ -12,6 +12,7 @@ interface ProjectsState {
   create: (data: ProjectDraft) => Promise<Project>;
   update: (id: string, patch: Partial<ProjectDraft>) => Promise<Project | null>;
   remove: (id: string) => Promise<boolean>;
+  replaceAll: (items: Project[]) => void;
 }
 
 export const useProjectsStore = create<ProjectsState>((set, get) => ({
@@ -53,5 +54,10 @@ export const useProjectsStore = create<ProjectsState>((set, get) => ({
       set({ items: get().items.filter((p) => p.id !== id) });
     }
     return ok;
+  },
+
+  replaceAll: (items) => {
+    svc.setProjectsCache(items);
+    set({ items, loaded: true });
   },
 }));

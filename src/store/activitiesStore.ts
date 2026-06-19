@@ -8,6 +8,7 @@ interface ActivitiesState {
   loading: boolean;
   load: () => Promise<void>;
   add: (activity: Activity) => void;
+  replaceAll: (items: Activity[]) => void;
 }
 
 export const useActivitiesStore = create<ActivitiesState>((set, get) => ({
@@ -24,5 +25,10 @@ export const useActivitiesStore = create<ActivitiesState>((set, get) => ({
 
   add: (activity) => {
     set({ items: [activity, ...get().items].slice(0, 500) });
+  },
+
+  replaceAll: (items) => {
+    svc.setActivitiesCache(items);
+    set({ items, loaded: true });
   },
 }));

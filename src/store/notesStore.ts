@@ -11,6 +11,7 @@ interface NotesState {
   create: (data: NoteDraft) => Promise<Note>;
   update: (id: string, patch: Partial<NoteDraft>) => Promise<Note | null>;
   remove: (id: string) => Promise<boolean>;
+  replaceAll: (items: Note[]) => void;
 }
 
 export const useNotesStore = create<NotesState>((set, get) => ({
@@ -45,5 +46,10 @@ export const useNotesStore = create<NotesState>((set, get) => ({
     const ok = await svc.deleteNote(id);
     if (ok) set({ items: get().items.filter((n) => n.id !== id) });
     return ok;
+  },
+
+  replaceAll: (items) => {
+    svc.setNotesCache(items);
+    set({ items, loaded: true });
   },
 }));

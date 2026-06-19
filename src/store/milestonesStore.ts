@@ -11,6 +11,7 @@ interface MilestonesState {
   create: (data: MilestoneDraft) => Promise<Milestone>;
   update: (id: string, patch: Partial<MilestoneDraft>) => Promise<Milestone | null>;
   remove: (id: string) => Promise<boolean>;
+  replaceAll: (items: Milestone[]) => void;
 }
 
 export const useMilestonesStore = create<MilestonesState>((set, get) => ({
@@ -49,5 +50,10 @@ export const useMilestonesStore = create<MilestonesState>((set, get) => ({
     const ok = await svc.deleteMilestone(id);
     if (ok) set({ items: get().items.filter((m) => m.id !== id) });
     return ok;
+  },
+
+  replaceAll: (items) => {
+    svc.setMilestonesCache(items);
+    set({ items, loaded: true });
   },
 }));

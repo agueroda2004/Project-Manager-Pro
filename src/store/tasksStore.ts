@@ -14,6 +14,7 @@ interface TasksState {
   changeStatus: (id: string, status: TaskStatus) => Promise<Task | null>;
   remove: (id: string) => Promise<boolean>;
   getById: (id: string) => Task | undefined;
+  replaceAll: (items: Task[]) => void;
 }
 
 export const useTasksStore = create<TasksState>((set, get) => ({
@@ -78,6 +79,11 @@ export const useTasksStore = create<TasksState>((set, get) => ({
   },
 
   getById: (id) => get().items.find((t) => t.id === id),
+
+  replaceAll: (items) => {
+    svc.setTasksCache(items);
+    set({ items, loaded: true });
+  },
 }));
 
 export function useEffectiveStatus(task: Task | undefined): TaskStatus {

@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Plus, ListTodo, Pencil, Trash2, StickyNote, Link2, ChevronDown, ChevronRight } from "lucide-react";
 import { useTasksStore } from "../store/tasksStore";
 import { useProjectsStore } from "../store/projectsStore";
@@ -13,6 +13,7 @@ import { SearchBar } from "../components/shared/SearchBar";
 import { CustomDropdown } from "../components/shared/CustomDropdown";
 import { EmptyState } from "../components/shared/EmptyState";
 import { ConfirmDialog } from "../components/shared/ConfirmDialog";
+import { Pagination } from "../components/shared/Pagination";
 import { ProgressBar } from "../components/shared/ProgressBar";
 import { taskProgress } from "../utils/progress";
 import { getEffectiveStatus } from "../utils/dependencies";
@@ -39,6 +40,8 @@ export function TasksPage() {
   const [statusFilter, setStatusFilter] = useState<TaskStatus | null>(null);
   const [priorityFilter, setPriorityFilter] = useState<Priority | null>(null);
   const [overdueOnly, setOverdueOnly] = useState(false);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
 
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Task | null>(null);
@@ -67,6 +70,17 @@ export function TasksPage() {
       return true;
     });
   }, [tasks, projectFilter, moduleFilter, statusFilter, priorityFilter, overdueOnly, debounced]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [projectFilter, moduleFilter, statusFilter, priorityFilter, overdueOnly, debounced, pageSize]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const safePage = Math.min(page, totalPages);
+  const pagedTasks = useMemo(
+    () => filtered.slice((safePage - 1) * pageSize, safePage * pageSize),
+    [filtered, safePage, pageSize],
+  );
 
   const handleSubmit = async (data: TaskDraft) => {
     if (editing) await updateTask(editing.id, data);
@@ -164,7 +178,7 @@ export function TasksPage() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((t) => {
+                {pagedTasks.map((t) => {
                   const eff = getEffectiveStatus(t, tasks);
                   const project = projects.find((p) => p.id === t.projectId);
                   const module = modules.find((m) => m.id === t.moduleId);
@@ -228,6 +242,13 @@ export function TasksPage() {
               </tbody>
             </table>
           </div>
+          <Pagination
+            page={safePage}
+            pageSize={pageSize}
+            total={filtered.length}
+            onPageChange={setPage}
+            onPageSizeChange={setPageSize}
+          />
         </div>
       )}
 
@@ -253,13 +274,14 @@ export function TasksPage() {
         variant="danger"
       />
 
-      <TaskDetailModal task={viewing} onClose={() => setViewing(null)} onEdit={(t) => { setEditing(t); setViewing(null); setOpen(true); }} />
+      <TaskDetailModal taskId={viewing?.id ?? null} onClose={() => setViewing(null)} onEdit={(t) => { setEditing(t); setViewing(null); setOpen(true); }} />
     </div>
   );
 }
 
-function TaskDetailModal({ task, onClose, onEdit }: { task: Task | null; onClose: () => void; onEdit: (t: Task) => void }) {
+function TaskDetailModal({ taskId, onClose, onEdit }: { taskId: string | null; onClose: () => void; onEdit: (t: Task) => void }) {
   const tasks = useTasksStore((s) => s.items);
+  const task = useMemo(() => tasks.find((t) => t.id === taskId) ?? null, [tasks, taskId]);
   const projects = useProjectsStore((s) => s.items);
   const modules = useModulesStore((s) => s.items);
   const categories = useCategoriesStore((s) => s.items);
@@ -270,7 +292,7 @@ function TaskDetailModal({ task, onClose, onEdit }: { task: Task | null; onClose
   const createNote = useNotesStore((s) => s.create);
   const updateNote = useNotesStore((s) => s.update);
   const removeNote = useNotesStore((s) => s.remove);
-  const notes = useMemo(() => allNotes.filter((n) => n.taskId === task?.id), [allNotes, task?.id]);
+  const notes = useMemo(() => allNotes.filter((n) => n.taskId === taskId), [allNotes, taskId]);
 
   const [noteText, setNoteText] = useState("");
   const [editingNoteId, setEditingNoteId] = useState<string | null>(null);
