@@ -1,0 +1,52 @@
+[
+  {
+    "id": "mst_1",
+    "projectId": "prj_1",
+    "name": "MVP",
+    "description": "Versión mínima viable con autenticación y catálogo.",
+    "targetDate": "2026-04-30T00:00:00.000Z",
+    "status": "alcanzado",
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-04-30T10:00:00.000Z"
+  },
+  {
+    "id": "mst_2",
+    "projectId": "prj_1",
+    "name": "Beta",
+    "description": "Versión beta con carrito y checkout.",
+    "targetDate": "2026-06-30T00:00:00.000Z",
+    "status": "pendiente",
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-01-10T10:00:00.000Z"
+  },
+  {
+    "id": "mst_3",
+    "projectId": "prj_1",
+    "name": "Versión 1.0",
+    "description": "Lanzamiento oficial de la plataforma.",
+    "targetDate": "2026-08-30T00:00:00.000Z",
+    "status": "pendiente",
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-01-10T10:00:00.000Z"
+  },
+  {
+    "id": "mst_4",
+    "projectId": "prj_3",
+    "name": "Release Candidate",
+    "description": "Candidata a release de la app móvil.",
+    "targetDate": "2026-04-15T00:00:00.000Z",
+    "status": "pendiente",
+    "createdAt": "2025-09-20T10:00:00.000Z",
+    "updatedAt": "2025-09-20T10:00:00.000Z"
+  },
+  {
+    "id": "mst_5",
+    "projectId": "prj_4",
+    "name": "Versión 2.0",
+    "description": "Release de la segunda versión del portal.",
+    "targetDate": "2025-12-15T00:00:00.000Z",
+    "status": "alcanzado",
+    "createdAt": "2025-05-25T10:00:00.000Z",
+    "updatedAt": "2025-12-15T10:00:00.000Z"
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "prj_1",
+    "name": "E-Commerce Platform",
+    "description": "Plataforma de comercio electrónico con catálogo, carrito, pagos y panel administrativo.",
+    "startDate": "2026-01-15T00:00:00.000Z",
+    "endDate": "2026-08-30T00:00:00.000Z",
+    "status": "desarrollo",
+    "color": "#6366f1",
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-06-10T10:00:00.000Z"
+  },
+  {
+    "id": "prj_2",
+    "name": "Sistema de Gestión Interna",
+    "description": "Software interno para gestión de inventario, proveedores y reportes financieros.",
+    "startDate": "2026-02-01T00:00:00.000Z",
+    "endDate": "2026-09-15T00:00:00.000Z",
+    "status": "planeacion",
+    "color": "#10b981",
+    "createdAt": "2026-01-25T10:00:00.000Z",
+    "updatedAt": "2026-05-20T10:00:00.000Z"
+  },
+  {
+    "id": "prj_3",
+    "name": "App Móvil de Fidelización",
+    "description": "Aplicación móvil con programa de puntos, recompensas y notificaciones push.",
+    "startDate": "2025-10-01T00:00:00.000Z",
+    "endDate": "2026-04-30T00:00:00.000Z",
+    "status": "testing",
+    "color": "#f59e0b",
+    "createdAt": "2025-09-20T10:00:00.000Z",
+    "updatedAt": "2026-06-12T10:00:00.000Z"
+  },
+  {
+    "id": "prj_4",
+    "name": "Portal de Analítica",
+    "description": "Dashboard de analítica con KPIs, gráficos en tiempo real y exportación de reportes.",
+    "startDate": "2025-06-01T00:00:00.000Z",
+    "endDate": "2025-12-15T00:00:00.000Z",
+    "status": "produccion",
+    "color": "#8b5cf6",
+    "createdAt": "2025-05-25T10:00:00.000Z",
+    "updatedAt": "2026-05-01T10:00:00.000Z"
+  }
+]

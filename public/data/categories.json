@@ -1,0 +1,12 @@
+[
+  { "id": "cat_1", "name": "Developing", "color": "#3b82f6", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_2", "name": "Testing", "color": "#f59e0b", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_3", "name": "Refactoring", "color": "#8b5cf6", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_4", "name": "Bug Fix", "color": "#ef4444", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_5", "name": "Database", "color": "#0ea5e9", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_6", "name": "Documentation", "color": "#64748b", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_7", "name": "Deployment", "color": "#10b981", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_8", "name": "Research", "color": "#a855f7", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_9", "name": "Security", "color": "#dc2626", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" },
+  { "id": "cat_10", "name": "UI/UX", "color": "#ec4899", "createdAt": "2026-01-01T00:00:00.000Z", "updatedAt": "2026-01-01T00:00:00.000Z" }
+]

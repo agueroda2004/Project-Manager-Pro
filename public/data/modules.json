@@ -1,0 +1,123 @@
+[
+  {
+    "id": "mod_1",
+    "projectId": "prj_1",
+    "name": "Autenticación",
+    "description": "Login, registro, recuperación de contraseña y OAuth.",
+    "priority": "alta",
+    "startDate": "2026-01-15T00:00:00.000Z",
+    "endDate": "2026-02-28T00:00:00.000Z",
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-06-01T10:00:00.000Z"
+  },
+  {
+    "id": "mod_2",
+    "projectId": "prj_1",
+    "name": "Catálogo de Productos",
+    "description": "CRUD de productos, categorías, imágenes y búsqueda.",
+    "priority": "critica",
+    "startDate": "2026-02-15T00:00:00.000Z",
+    "endDate": "2026-04-30T00:00:00.000Z",
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-06-05T10:00:00.000Z"
+  },
+  {
+    "id": "mod_3",
+    "projectId": "prj_1",
+    "name": "Carrito y Checkout",
+    "description": "Carrito persistente, checkout con Stripe y facturación.",
+    "priority": "alta",
+    "startDate": "2026-04-01T00:00:00.000Z",
+    "endDate": "2026-06-15T00:00:00.000Z",
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-06-08T10:00:00.000Z"
+  },
+  {
+    "id": "mod_4",
+    "projectId": "prj_1",
+    "name": "Dashboard Admin",
+    "description": "Panel administrativo con métricas y gestión.",
+    "priority": "media",
+    "startDate": "2026-05-15T00:00:00.000Z",
+    "endDate": "2026-07-30T00:00:00.000Z",
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-06-01T10:00:00.000Z"
+  },
+  {
+    "id": "mod_5",
+    "projectId": "prj_2",
+    "name": "Gestión de Inventario",
+    "description": "Control de stock, entradas, salidas y alertas.",
+    "priority": "alta",
+    "startDate": "2026-02-15T00:00:00.000Z",
+    "endDate": "2026-05-30T00:00:00.000Z",
+    "createdAt": "2026-01-25T10:00:00.000Z",
+    "updatedAt": "2026-05-20T10:00:00.000Z"
+  },
+  {
+    "id": "mod_6",
+    "projectId": "prj_2",
+    "name": "Reportes Financieros",
+    "description": "Reportes de ingresos, egresos y balances.",
+    "priority": "media",
+    "startDate": "2026-04-01T00:00:00.000Z",
+    "endDate": "2026-07-15T00:00:00.000Z",
+    "createdAt": "2026-01-25T10:00:00.000Z",
+    "updatedAt": "2026-05-15T10:00:00.000Z"
+  },
+  {
+    "id": "mod_7",
+    "projectId": "prj_3",
+    "name": "Login y Perfil",
+    "description": "Autenticación móvil y gestión de perfil de usuario.",
+    "priority": "alta",
+    "startDate": "2025-10-01T00:00:00.000Z",
+    "endDate": "2025-12-15T00:00:00.000Z",
+    "createdAt": "2025-09-20T10:00:00.000Z",
+    "updatedAt": "2026-01-10T10:00:00.000Z"
+  },
+  {
+    "id": "mod_8",
+    "projectId": "prj_3",
+    "name": "Sistema de Puntos",
+    "description": "Acumulación, canje y reglas del programa de fidelización.",
+    "priority": "critica",
+    "startDate": "2025-12-01T00:00:00.000Z",
+    "endDate": "2026-03-15T00:00:00.000Z",
+    "createdAt": "2025-09-20T10:00:00.000Z",
+    "updatedAt": "2026-03-15T10:00:00.000Z"
+  },
+  {
+    "id": "mod_9",
+    "projectId": "prj_3",
+    "name": "Notificaciones Push",
+    "description": "Servicio de notificaciones push y segmentación.",
+    "priority": "media",
+    "startDate": "2026-02-01T00:00:00.000Z",
+    "endDate": "2026-04-15T00:00:00.000Z",
+    "createdAt": "2025-09-20T10:00:00.000Z",
+    "updatedAt": "2026-04-10T10:00:00.000Z"
+  },
+  {
+    "id": "mod_10",
+    "projectId": "prj_4",
+    "name": "API de Analítica",
+    "description": "Endpoints para recolección y procesamiento de eventos.",
+    "priority": "alta",
+    "startDate": "2025-06-01T00:00:00.000Z",
+    "endDate": "2025-09-30T00:00:00.000Z",
+    "createdAt": "2025-05-25T10:00:00.000Z",
+    "updatedAt": "2025-09-30T10:00:00.000Z"
+  },
+  {
+    "id": "mod_11",
+    "projectId": "prj_4",
+    "name": "Visualizaciones",
+    "description": "Gráficos, KPIs y dashboards interactivos.",
+    "priority": "alta",
+    "startDate": "2025-08-01T00:00:00.000Z",
+    "endDate": "2025-11-30T00:00:00.000Z",
+    "createdAt": "2025-05-25T10:00:00.000Z",
+    "updatedAt": "2025-11-30T10:00:00.000Z"
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "id": "act_1",
+    "type": "task_completed",
+    "entityId": "tsk_4",
+    "entityType": "task",
+    "message": "Tarea \"Endpoint POST /auth/login\" completada",
+    "createdAt": "2026-06-15T14:23:00.000Z"
+  },
+  {
+    "id": "act_2",
+    "type": "task_status_changed",
+    "entityId": "tsk_5",
+    "entityType": "task",
+    "message": "Tarea \"Recuperación de contraseña\" cambió a Trabajando",
+    "createdAt": "2026-06-15T11:10:00.000Z"
+  },
+  {
+    "id": "act_3",
+    "type": "dependency_added",
+    "entityId": "tsk_5",
+    "entityType": "dependency",
+    "message": "Tarea \"Recuperación de contraseña\" ahora depende de \"Endpoint POST /auth/login\"",
+    "createdAt": "2026-06-14T16:45:00.000Z"
+  },
+  {
+    "id": "act_4",
+    "type": "task_status_changed",
+    "entityId": "tsk_7",
+    "entityType": "task",
+    "message": "Tarea \"CRUD de Productos\" pasó a Testing",
+    "createdAt": "2026-06-13T09:30:00.000Z"
+  },
+  {
+    "id": "act_5",
+    "type": "milestone_achieved",
+    "entityId": "mst_1",
+    "entityType": "milestone",
+    "message": "Hito \"MVP\" marcado como Alcanzado",
+    "createdAt": "2026-04-30T18:00:00.000Z"
+  },
+  {
+    "id": "act_6",
+    "type": "project_updated",
+    "entityId": "prj_1",
+    "entityType": "project",
+    "message": "Proyecto \"E-Commerce Platform\" actualizado",
+    "createdAt": "2026-06-10T10:00:00.000Z"
+  },
+  {
+    "id": "act_7",
+    "type": "module_created",
+    "entityId": "mod_4",
+    "entityType": "module",
+    "message": "Módulo \"Dashboard Admin\" creado",
+    "createdAt": "2026-01-10T10:00:00.000Z"
+  },
+  {
+    "id": "act_8",
+    "type": "category_created",
+    "entityId": "cat_1",
+    "entityType": "category",
+    "message": "Categoría \"Developing\" creada",
+    "createdAt": "2026-01-01T10:00:00.000Z"
+  }
+]
