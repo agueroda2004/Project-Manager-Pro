@@ -40,6 +40,7 @@ export function TasksPage() {
   const [statusFilter, setStatusFilter] = useState<TaskStatus | null>(null);
   const [priorityFilter, setPriorityFilter] = useState<Priority | null>(null);
   const [overdueOnly, setOverdueOnly] = useState(false);
+  const [hideCompleted, setHideCompleted] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(20);
 
@@ -63,17 +64,18 @@ export function TasksPage() {
       if (statusFilter && eff !== statusFilter) return false;
       if (priorityFilter && t.priority !== priorityFilter) return false;
       if (overdueOnly && !isOverdue(t.dueDate, eff)) return false;
+      if (hideCompleted && eff === "terminado") return false;
       if (debounced.trim()) {
         const q = debounced.toLowerCase();
         return t.title.toLowerCase().includes(q) || t.description.toLowerCase().includes(q);
       }
       return true;
     });
-  }, [tasks, projectFilter, moduleFilter, statusFilter, priorityFilter, overdueOnly, debounced]);
+  }, [tasks, projectFilter, moduleFilter, statusFilter, priorityFilter, overdueOnly, hideCompleted, debounced]);
 
   useEffect(() => {
     setPage(1);
-  }, [projectFilter, moduleFilter, statusFilter, priorityFilter, overdueOnly, debounced, pageSize]);
+  }, [projectFilter, moduleFilter, statusFilter, priorityFilter, overdueOnly, hideCompleted, debounced, pageSize]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const safePage = Math.min(page, totalPages);
@@ -142,15 +144,26 @@ export function TasksPage() {
         />
       </div>
 
-      <label className="flex w-fit items-center gap-2 text-sm text-[var(--text-secondary)]">
-        <input
-          type="checkbox"
-          checked={overdueOnly}
-          onChange={(e) => setOverdueOnly(e.target.checked)}
-          className="h-4 w-4 rounded border-[var(--border)] accent-[var(--accent)]"
-        />
-        Solo tareas vencidas
-      </label>
+      <div className="flex flex-wrap items-center gap-4">
+        <label className="flex w-fit items-center gap-2 text-sm text-[var(--text-secondary)]">
+          <input
+            type="checkbox"
+            checked={overdueOnly}
+            onChange={(e) => setOverdueOnly(e.target.checked)}
+            className="h-4 w-4 rounded border-[var(--border)] accent-[var(--accent)]"
+          />
+          Solo tareas vencidas
+        </label>
+        <label className="flex w-fit items-center gap-2 text-sm text-[var(--text-secondary)]">
+          <input
+            type="checkbox"
+            checked={hideCompleted}
+            onChange={(e) => setHideCompleted(e.target.checked)}
+            className="h-4 w-4 rounded border-[var(--border)] accent-[var(--accent)]"
+          />
+          Ocultar terminadas
+        </label>
+      </div>
 
       {filtered.length === 0 ? (
         <EmptyState

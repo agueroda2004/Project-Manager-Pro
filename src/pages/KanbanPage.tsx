@@ -37,15 +37,19 @@ export function KanbanPage() {
   const createTask = useTasksStore((s) => s.create);
 
   const [projectFilter, setProjectFilter] = useState<string | null>(null);
+  const [hideCompleted, setHideCompleted] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<Task | null>(null);
 
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
 
-  const filtered = useMemo(
-    () => (projectFilter ? tasks.filter((t) => t.projectId === projectFilter) : tasks),
-    [tasks, projectFilter],
-  );
+  const filtered = useMemo(() => {
+    let list = projectFilter ? tasks.filter((t) => t.projectId === projectFilter) : tasks;
+    if (hideCompleted) {
+      list = list.filter((t) => getEffectiveStatus(t, tasks) !== "terminado");
+    }
+    return list;
+  }, [tasks, projectFilter, hideCompleted]);
 
   const columns = useMemo(() => {
     const map: Record<TaskStatus, Task[]> = {
@@ -82,7 +86,7 @@ export function KanbanPage() {
           <h1 className="text-2xl font-semibold tracking-tight text-[var(--text-primary)]">Kanban</h1>
           <p className="mt-1 text-sm text-[var(--text-muted)]">Arrastra y suelta para cambiar el estado</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <div className="w-56">
             <CustomDropdown
               options={[
@@ -94,6 +98,15 @@ export function KanbanPage() {
               searchable
             />
           </div>
+          <label className="flex h-9 items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg-surface)] px-3 text-sm text-[var(--text-secondary)] cursor-pointer">
+            <input
+              type="checkbox"
+              checked={hideCompleted}
+              onChange={(e) => setHideCompleted(e.target.checked)}
+              className="h-4 w-4 rounded border-[var(--border)] accent-[var(--accent)]"
+            />
+            Ocultar terminadas
+          </label>
           <Button leftIcon={<Plus className="h-4 w-4" />} onClick={() => setOpen(true)}>Nueva tarea</Button>
         </div>
       </div>

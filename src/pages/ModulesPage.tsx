@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   Plus,
   Boxes,
@@ -20,6 +20,7 @@ import { SearchBar } from "../components/shared/SearchBar";
 import { CustomDropdown } from "../components/shared/CustomDropdown";
 import { EmptyState } from "../components/shared/EmptyState";
 import { ConfirmDialog } from "../components/shared/ConfirmDialog";
+import { Pagination } from "../components/shared/Pagination";
 import { ProgressBar } from "../components/shared/ProgressBar";
 import { moduleProgress } from "../utils/progress";
 import { getEffectiveStatus } from "../utils/dependencies";
@@ -40,6 +41,8 @@ export function ModulesPage() {
   const [search, setSearch] = useState("");
   const [projectFilter, setProjectFilter] = useState<string | null>(null);
   const [priorityFilter, setPriorityFilter] = useState<Priority | null>(null);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState<Module | null>(null);
   const [deleting, setDeleting] = useState<Module | null>(null);
@@ -67,6 +70,17 @@ export function ModulesPage() {
       return true;
     });
   }, [enriched, projectFilter, priorityFilter, debounced]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [projectFilter, priorityFilter, debounced, pageSize]);
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const safePage = Math.min(page, totalPages);
+  const pagedModules = useMemo(
+    () => filtered.slice((safePage - 1) * pageSize, safePage * pageSize),
+    [filtered, safePage, pageSize],
+  );
 
   const handleSubmit = async (data: ModuleDraft) => {
     if (editing) await update(editing.id, data);
@@ -117,8 +131,9 @@ export function ModulesPage() {
           }
         />
       ) : (
+        <>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {filtered.map(({ module: m, project, total, completed, blocked, progress }) => {
+          {pagedModules.map(({ module: m, project, total, completed, blocked, progress }) => {
             const overdue = isOverdue(m.endDate, "pendiente");
             return (
               <div key={m.id} className="group flex flex-col gap-3 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] p-5">
@@ -187,6 +202,16 @@ export function ModulesPage() {
             );
           })}
         </div>
+        <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-surface)]">
+          <Pagination
+            page={safePage}
+            pageSize={pageSize}
+            total={filtered.length}
+            onPageChange={setPage}
+            onPageSizeChange={setPageSize}
+          />
+        </div>
+        </>
       )}
 
       <Modal open={open} onClose={() => { setOpen(false); setEditing(null); }} title={editing ? "Editar módulo" : "Nuevo módulo"} size="lg">
